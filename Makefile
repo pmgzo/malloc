@@ -7,14 +7,15 @@
 
 SRCDIR = src/
 
-SRC_SRC	=	main.c\
-			cut.c\
+SRC_SRC	=	cut.c\
+			determine_size.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 
 CRITDIR = tests/
 
 CRT_SRC	=	redirect.c\
+			det_size.test.c\
 
 CRT = $(addprefix $(CRITDIR), $(CRT_SRC))
 
@@ -23,13 +24,13 @@ NAME	=	test
 all:	$(NAME)
 
 $(NAME):
-	gcc $(SRC) -o $(NAME) -I ./include/ -g3
+	gcc $(SRC) src/main.c -o $(NAME) -I ./include/ -lm -g3
 
 tests_run:
-		gcc $(SRC) $(CRT) -o unit_tests  -I ./include/ --coverage -lcriterion
-		rm -rf *.gcda *.gcno
+		gcc -o unit_tests $(SRC) $(CRT) -I include/ -lm --coverage -lcriterion
 		./unit_tests
 		gcovr
+		rm -rf *.gcda *.gcno unit_tests
 
 clean:
 	rm -rf *.gcda *.gcno

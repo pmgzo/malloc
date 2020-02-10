@@ -1,9 +1,11 @@
 #include "node.h"
-#include ""
+#include <math.h>
 
-lu_t determine_node_size(size_t size)
+long unsigned determine_node_size(size_t size)
 {
     lu_t new_size = 1;
 
-    for (int i = 0; new_size < size + NODE_SIZE;
+    for (int i = 0; 
+        new_size < size + NODE_SIZE; i++,new_size = pow(2, i));
+    return new_size;
 }
