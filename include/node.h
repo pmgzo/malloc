@@ -22,15 +22,13 @@ struct node_to_cmp {
 #define NODE_SIZE sizeof(struct node)
 #define PAGE_SIZE getpagesize() * 2
 
-static node_t *list = NULL;
-static void *next_addr;
 
 int enlarge_memory(size_t size);
 
-void *init_list(size_t size);
+void *init_list(size_t size, node_t **list, void **next_addr);
 node_t *create_empty_node(void *node_addr);
 
-void *malloc(size_t size);
+void *test_malloc(size_t size);
 
 void *add_new_node(size_t size);
 
