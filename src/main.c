@@ -1,8 +1,8 @@
 #include "node.h"
 
-#include <stdio.h>
+// #include <stdio.h>
 // #include "list.h"
-#include "free.h"
+// #include "free.h"
 
 int main()
 {
@@ -19,12 +19,13 @@ int main()
     str[2] = 't';
     str[3] = '2';
     str[4] = 0;
-    // char *str2 = malloc(5);
-    // str2[0] = 't';
-    // str2[1] = 'o';
-    // str2[2] = 't';
-    // str2[3] = 'o';
-    // str2[4] = 0;
+    // my_free(str);
+    char *str2 = test_malloc(5);
+    str2[0] = 't';
+    str2[1] = 'o';
+    str2[2] = 't';
+    str2[3] = 'o';
+    str2[4] = 0;
     // printf("%s\n", str);
 
     // free(str);

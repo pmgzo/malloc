@@ -1,4 +1,15 @@
 #include "list.h"
+#include "free.h"
+
+void my_free(void *ptr)
+{
+    write(1, "in free\n", 8);
+    if (list == NULL && ptr == NULL)
+        return;
+    // else if (list->next == NULL)
+    else
+        free_node(ptr, &list, &next_addr);
+}
 
 void *test_malloc(size_t size)
 {
@@ -10,11 +21,11 @@ void *test_malloc(size_t size)
         // write(1, "ok\n", 3);
         new_addr = init_list(size, &list, &next_addr);
     }
-    // else if (!(new_addr = find_and_split(size))) {
-    //     // write(1, "ici\n", 4);
-    //     new_addr = add_new_node(size);
-    // }
-    // if (list == NULL)
+    else if (!(new_addr = find_and_split(size, &list))) {
+        // write(1, "ici\n", 4);
+        new_addr = add_new_node(size, &list, &next_addr);
+    }
+    if (list == NULL)
     //     write(1,"c'est null\n", 11);
     // printf("a = %d\n", a);
     // char c = a + 48;

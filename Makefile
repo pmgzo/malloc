@@ -11,13 +11,12 @@ SRC_SRC	=	init_list.c\
 			sizeof_mem_attr.c\
 			malloc.c\
 			enlarge_memory.c\
-			# free.c\
+			free_node.c\
+			shrink_memory.c\
 			is_pow_of_two.c\
 			find_and_split.c\
 			split.c\
 			add_new_node.c\
-			free_node.c\
-			shrink_memory.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 

@@ -9,13 +9,13 @@ int change_ptr(void *node_addr1, struct node_to_cmp *ptr, int size_btw_ptr)
     return (0);
 }
 
-node_t *find_freed_node(size_t size)
+node_t *find_freed_node(size_t size, node_t **list)
 {
     struct node_to_cmp ptr = {0, NULL};
-    node_t *browser = list;
+    node_t *browser = (*list);
     lu_t size_btw_ptr;
 
-    if (list == NULL)
+    if ((*list) == NULL)
         return (NULL);
     while (browser->next != NULL) {
         size_btw_ptr = browser->next - browser - NODE_SIZE;
@@ -26,12 +26,14 @@ node_t *find_freed_node(size_t size)
     return ptr.addr;
 }
 
-void *find_and_split(size_t size)
+void *find_and_split(size_t size, node_t **list)
 {
     //test this function
-    node_t *before_freed_node = find_freed_node(size);
-    lu_t rest = before_freed_node->next - before_freed_node - NODE_SIZE * 2; //new node + the node of the next
+    node_t *before_freed_node = find_freed_node(size, list);
+    lu_t rest = 0;
 
+    if (before_freed_node)
+        rest = before_freed_node->next - before_freed_node - NODE_SIZE * 2; //new node + the node of the next
     if (before_freed_node && is_pow_of_two(rest)) {
         split_node(before_freed_node, size);
         return before_freed_node->next->next;

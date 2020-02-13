@@ -29,10 +29,11 @@ void *init_list(size_t size, node_t **list, void **next_addr);
 node_t *create_empty_node(void *node_addr);
 
 void *test_malloc(size_t size);
+void my_free(void *ptr);
 
-void *add_new_node(size_t size);
+void *add_new_node(size_t size, node_t **list, void **next_addr);
 
-void *find_and_split(size_t size); //return addr
+void *find_and_split(size_t size, node_t **list);
 
 void split_node(node_t *before_freed_node, size_t size);
 
