@@ -7,15 +7,21 @@
 
 SRCDIR = src/
 
-SRC_SRC	=	cut.c\
-			determine_size.c\
+SRC_SRC	=	init_list.c\
+			sizeof_mem_attr.c\
+			enlarge_memory.c\
+			malloc.c\
+			is_pow_of_two.c\
+			find_and_split.c\
+			split.c\
+			add_new_node.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 
 CRITDIR = tests/
 
 CRT_SRC	=	redirect.c\
-			det_size.test.c\
+			sizeof_mem_attr.test.c\
 
 CRT = $(addprefix $(CRITDIR), $(CRT_SRC))
 

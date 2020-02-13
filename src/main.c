@@ -17,6 +17,12 @@ int main()
     str[2] = 't';
     str[3] = 'o';
     str[4] = 0;
+    char *str2 = malloc(5);
+    str2[0] = 't';
+    str2[1] = 'o';
+    str2[2] = 't';
+    str2[3] = 'o';
+    str2[4] = 0;
     // printf("%s\n", str);
     //create node
     return (0);

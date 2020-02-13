@@ -8,15 +8,16 @@ struct node {
     unsigned free:1; //true or false
     struct node *next;
 };
-// } __attribute__((__packed__)); //use packed ?
+
 typedef struct node node_t;
 
+typedef long unsigned lu_t;
+
 struct node_to_cmp {
-    unsigned size;
+    lu_t size;
     node_t *addr; //node addr1
 };
 
-typedef long unsigned lu_t;
 
 #define NODE_SIZE sizeof(struct node)
 #define PAGE_SIZE getpagesize() * 2
@@ -25,8 +26,21 @@ static node_t *list = NULL;
 static void *next_addr;
 
 int enlarge_memory(size_t size);
+
 void *init_list(size_t size);
 node_t *create_empty_node(void *node_addr);
-void *malloc(size_t size); //return address
+
+void *malloc(size_t size);
+
+void *add_new_node(size_t size);
+
+void *find_and_split(size_t size); //return addr
+
+void split_node(node_t *before_freed_node, size_t size);
+
+//Math
+lu_t sizeof_mem_attr(size_t size);
+
+int is_pow_of_two(size_t size);
 
 #endif

@@ -13,7 +13,7 @@ node_t *find_freed_node(size_t size)
 {
     struct node_to_cmp ptr = {0, NULL};
     node_t *browser = list;
-    int size_btw_ptr;
+    lu_t size_btw_ptr;
 
     if (list == NULL)
         return (NULL);
@@ -23,20 +23,16 @@ node_t *find_freed_node(size_t size)
             change_ptr(browser, &ptr, size_btw_ptr);
         browser = browser->next;
     }
-    return node_to_cmp.addr;
+    return ptr.addr;
 }
 
 //ALLIGN MEMORY OF POWER OF TWO
 void *find_and_split(size_t size) //return addr
 {
     node_t *before_freed_node = find_freed_node(size);
+    lu_t rest = before_freed_node->next - before_freed_node - NODE_SIZE * 2; //new node + the node of the next
 
-    if (!before_freed_node)
-        return (NULL);
-    if (before_freed_node->next - before_freed_node - NODE_SIZE * 2 > 1) {
-        // 
-        // check if it count to split the node
-        // return split_node
-    }
-    return before_freed_node->next->addr;
+    if (before_freed_node && is_pow_of_two(rest))
+        split_node(before_freed_node, size);
+    return before_freed_node ? before_freed_node->next->next : NULL;
 }
