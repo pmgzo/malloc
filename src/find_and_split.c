@@ -26,13 +26,15 @@ node_t *find_freed_node(size_t size)
     return ptr.addr;
 }
 
-//ALLIGN MEMORY OF POWER OF TWO
-void *find_and_split(size_t size) //return addr
+void *find_and_split(size_t size)
 {
+    //test this function
     node_t *before_freed_node = find_freed_node(size);
     lu_t rest = before_freed_node->next - before_freed_node - NODE_SIZE * 2; //new node + the node of the next
 
-    if (before_freed_node && is_pow_of_two(rest))
+    if (before_freed_node && is_pow_of_two(rest)) {
         split_node(before_freed_node, size);
-    return before_freed_node ? before_freed_node->next->next : NULL;
+        return before_freed_node->next->next;
+    }
+    return before_freed_node ? before_freed_node->next : NULL;
 }
