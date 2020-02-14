@@ -13,7 +13,7 @@ node_t *create_empty_node(void *node_addr)
 void *init_list(size_t size, node_t **list, void **next_addr)
 {
     void *last_pgbrk = sbrk(0);
-    node_t *rest;
+    // node_t *rest;
 
     // if ((*list) == NULL)
     //     write(1,"initlist\n", 11);

@@ -27,12 +27,21 @@ CRT_SRC	=	redirect.c\
 
 CRT = $(addprefix $(CRITDIR), $(CRT_SRC))
 
-NAME	=	test
+NAME	=	libmy_malloc.so
 
 all:	$(NAME)
 
 $(NAME):
-	gcc $(SRC) src/main.c -o $(NAME) -I ./include/ -lm -g3
+		gcc -Wall -fPIC -c $(SRC) -I include/
+		gcc -shared -Wl,-soname,$(NAME) -o $(NAME) *.o
+
+test:
+	gcc src/main.c -o test -lm -g3
+	LD_PRELOAD=./libmy_malloc.so ./test
+
+test2:
+	gcc src/main.c $(SRC) -o test2 -I include -lm -g3
+	# LD_PRELOAD=./libmy_malloc.so ./test
 
 tests_run:
 		gcc -o unit_tests $(SRC) $(CRT) -I include/ -lm --coverage -lcriterion
@@ -41,6 +50,7 @@ tests_run:
 		rm -rf *.gcda *.gcno unit_tests
 
 clean:
+	rm -rf *.o
 	rm -rf *.gcda *.gcno
 
 fclean:	clean

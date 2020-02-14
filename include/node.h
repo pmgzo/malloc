@@ -28,8 +28,8 @@ int enlarge_memory(size_t size);
 void *init_list(size_t size, node_t **list, void **next_addr);
 node_t *create_empty_node(void *node_addr);
 
-void *test_malloc(size_t size);
-void my_free(void *ptr);
+void *malloc(size_t size);
+void free(void *ptr);
 
 void *add_new_node(size_t size, node_t **list, void **next_addr);
 
