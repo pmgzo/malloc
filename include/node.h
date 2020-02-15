@@ -41,7 +41,7 @@ void split_node(node_t *before_freed_node, size_t size);
 
 void *find_freed_node(size_t size, node_t **list, void **next_addr, int *nb_free);
 
-
+void *add_new_node(size_t size, node_t **list, void **next_addr);
 
 
 #endif

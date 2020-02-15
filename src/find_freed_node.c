@@ -30,7 +30,7 @@ void *check_if_we_can_split(int *nb_free, node_t *before_freed_node, size_t size
     long long diff = (void *) before_freed_node - (void *) before_freed_node->next - NODE_SIZE * 2;
 
     before_freed_node->next->free = 0;
-    (*nb_free)--; //merge free node
+    (*nb_free)--;
     if (diff > 0) {
         split_node(before_freed_node, size);
         (*nb_free)++;
@@ -46,8 +46,7 @@ void *find_freed_node(size_t size, node_t **list, void **next_addr, int *nb_free
         //return directly or split and return
         return (check_if_we_can_split(nb_free, before_freed_node, size));
     }
-    // else  {
-    //     //call add node
-    // }
-    return (0);
+    else  {
+        return (add_new_node(size, list, next_addr));
+    }
 }
