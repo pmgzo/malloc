@@ -30,12 +30,16 @@ void merge_from_the_beginning(node_t *head, node_t **list, void **next_addr)
 
 void free_node(void *ptr, node_t **list, void **next_addr)
 {
+    write(1, "node freed = ", 13);
+    my_put_nbr(ptr);
     node_t *browser = (*list);
 
     if ((void *) browser + NODE_SIZE == ptr) {
         browser->free = 1;
         merge_from_the_beginning(browser, list, next_addr);
         move_pg_brk((*next_addr));
+        write(1, "sbrk(0)=", 8);
+        my_put_nbr(sbrk(0));
         return;
     }
     while (browser != NULL) {

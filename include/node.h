@@ -22,5 +22,8 @@ struct node_to_cmp {
 #define NODE_SIZE sizeof(struct node)
 #define PAGE_SIZE getpagesize() * 2
 
+//to remove
+int my_put_nbr(void *nb);
+
 
 #endif
