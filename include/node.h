@@ -25,5 +25,8 @@ struct node_to_cmp {
 //to remove
 int my_put_nbr(void *nb);
 
+lu_t sizeof_mem_attr(lu_t size);
+
+
 
 #endif
