@@ -17,6 +17,7 @@ SRC_SRC	=	init_list.c\
 			find_and_split.c\
 			split.c\
 			add_new_node.c\
+			my_put_nbr.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 
@@ -41,11 +42,13 @@ test:
 
 test2:
 	gcc src/main.c $(SRC) -o test2 -I include -lm -g3
-	# LD_PRELOAD=./libmy_malloc.so ./test
+	./test2
+	valgrind ./test2
+	rm test2
 
 tests_run:
 		gcc -o unit_tests $(SRC) $(CRT) -I include/ -lm --coverage -lcriterion
-		./unit_tests
+		valgrind ./unit_tests
 		gcovr
 		rm -rf *.gcda *.gcno unit_tests
 
