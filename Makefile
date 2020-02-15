@@ -7,16 +7,8 @@
 
 SRCDIR = src/
 
-SRC_SRC	=	init_list.c\
-			sizeof_mem_attr.c\
-			malloc.c\
-			enlarge_memory.c\
-			free_node.c\
-			shrink_memory.c\
+SRC_SRC	=	sizeof_mem_attr.c\
 			is_pow_of_two.c\
-			find_and_split.c\
-			split.c\
-			add_new_node.c\
 			my_put_nbr.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
