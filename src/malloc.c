@@ -10,9 +10,9 @@ void free(void *ptr)
         free_from_the_head(&list, &next_addr);
         nb_free -= 1;
     } 
-    //else {
-
-    // }
+    else {
+        
+    }
 }
 
 void *malloc(size_t size)
@@ -24,7 +24,7 @@ void *malloc(size_t size)
         new_addr = init_list(&list, &next_addr, size);
     } 
     else if (nb_free) {
-        new_addr = find_freed_node();
+        new_addr = find_freed_node(size, &list, &next_addr, &nb_free);
     }
     //  else {
     //     new_addr = add_new_node();
