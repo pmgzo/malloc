@@ -5,5 +5,6 @@
 
 static node_t *list = NULL;
 static void *next_addr;
+static int nb_free = 0;
 
 #endif

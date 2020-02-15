@@ -27,6 +27,15 @@ int my_put_nbr(void *nb);
 
 lu_t sizeof_mem_attr(lu_t size);
 
+int enlarge_memory(size_t size);
+
+node_t *create_node(void *new_addr, node_t *next, int free);
+void *init_list(node_t **list, void **next_addr, size_t size);
+
+void *malloc(size_t size);
+
+int move_pg_brk(void **next_addr);
+
 
 
 #endif

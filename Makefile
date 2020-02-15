@@ -10,6 +10,12 @@ SRCDIR = src/
 SRC_SRC	=	sizeof_mem_attr.c\
 			is_pow_of_two.c\
 			my_put_nbr.c\
+			enlarge_memory.c\
+			init_list.c\
+			malloc.c\
+			shrink_memory.c\
+			free_from_the_head.c\
+			
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 
