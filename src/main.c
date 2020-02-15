@@ -1,36 +1,26 @@
 #include "node.h"
-
-// #include <stdio.h>
-// #include "list.h"
-// #include "free.h"
+// #include <stdlib.h>
 
 int main()
 {
-    // printf("%ld\n", NODE_SIZE);
+    // printf("sbrk =%d\n", sbrk(0));
+    char *str = malloc(64);
+    // printf("sbrk =%d\n", sbrk(0));
+    // printf("coco");
     // printf("%d\n", PAGE_SIZE);
 
-    // printf("begin brk = %p\n", sbrk(0));
-    char *str = test_malloc(5);
-    // printf("la\n");
-    // printf("after brk = %p\n", sbrk(0));
-    // printf("str = %p\n", str);
-    str[0] = 't';
-    str[1] = 'o';
-    str[2] = 't';
-    str[3] = '2';
-    str[4] = 0;
-    // my_free(str);
-    char *str2 = test_malloc(5);
-    str2[0] = 't';
-    str2[1] = 'o';
-    str2[2] = 't';
-    str2[3] = 'o';
-    str2[4] = 0;
-    // printf("%s\n", str);
-
+    // malloc(83);
     // free(str);
-    // free(str2);
-    // printf("%s\n", str);
-    //create node
+
+    for (int i = 0; i < 65; i++) {
+        // printf("coucou");
+        str[i] = 90;
+    }
+    // printf("\n");
+
+    // for (int i = 0; i < 64; i++, str[i]=0);
+    // for (int i = 0; i <= 128 + 17; i++, str2[i]=0);
+    // for (int i = 0; i < 4; i++, str3[i]=0);
+    // free(str3);
     return (0);
 }
