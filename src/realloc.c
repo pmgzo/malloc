@@ -52,8 +52,6 @@ void *realloc_the_ptr(void *ptr, size_t size, struct node_data data)
 
     if (before_node_to_free && before_node_to_free->next)
         diff = (void *) before_node_to_free - (void *) before_node_to_free->next - NODE_SIZE;
-    // write(1, "diff=", 5);
-    // my_put_nbr(diff);
     if (diff - NODE_SIZE > size) {
         return split_for_realloc(before_node_to_free, data, size);
     }

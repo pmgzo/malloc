@@ -22,6 +22,7 @@ SRC_SRC	=	sizeof_mem_attr.c\
 			get_size_list.c\
 			calloc.c\
 			realloc.c\
+			realloc_array.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 
@@ -46,8 +47,8 @@ test:
 
 test2:
 	gcc src/main.c $(SRC) -o test2 -I include -lm -g3
-	# valgrind ./test2
-	./test2
+	valgrind ./test2
+	# ./test2
 	rm test2
 
 tests_run:

@@ -5,6 +5,7 @@ void *realloc(void *ptr, size_t size)
 {
     struct node_data data = {list, &next_addr, &nb_free};
 
+    size = sizeof_mem_attr(size);
     if (ptr == NULL) {
         return (malloc(size));
     }
@@ -17,6 +18,8 @@ void *realloc(void *ptr, size_t size)
 
 void free(void *ptr)
 {
+    // write(1, "free\n", 5);
+
     if (list == NULL || ptr == NULL) {
         return;
     }
@@ -26,6 +29,8 @@ void free(void *ptr)
     else {
         free_from_the_middle(ptr, list, &nb_free);
     }
+    // write(1, "after free\n", 11);
+
     // write(1, "size list", 9);
     // my_put_nbr(get_size_list(list));
     // write(1, "not freed", 9);
@@ -37,6 +42,9 @@ void *malloc(size_t size)
 {
     void *new_addr = NULL;
 
+    // write(1, "malloc\n", 7);
+
+    // my_put_nbr(size);
     size = sizeof_mem_attr(size);
     if (list == NULL) {
         new_addr = init_list(&list, &next_addr, size);
@@ -47,5 +55,7 @@ void *malloc(size_t size)
     else {
         new_addr = add_new_node(size, &list, &next_addr);
     }
+    // write(1, "aftermalloc\n", 12);
+
     return (new_addr ? new_addr + NODE_SIZE : NULL);
 }

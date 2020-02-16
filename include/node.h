@@ -43,6 +43,8 @@ void *calloc(size_t nmemb, size_t size);
 
 void *realloc(void *ptr, size_t size);
 
+void *reallocarray(void *ptr, size_t nmemb, size_t size);
+
 int move_pg_brk(void **next_addr);
 
 //
@@ -57,5 +59,6 @@ void *realloc_the_ptr(void *ptr, size_t size, struct node_data data);
 // size
 int get_size_list(node_t *list);
 int get_number_not_freed_node(node_t *list);
+
 
 #endif
