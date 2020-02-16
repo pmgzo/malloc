@@ -1,4 +1,6 @@
 #include "node.h"
+#include <sys/time.h>
+#include <sys/resource.h>
 
 node_t *create_node(void *new_addr, node_t *next, int free)
 {

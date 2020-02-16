@@ -47,8 +47,8 @@ test:
 
 test2:
 	gcc src/main.c $(SRC) -o test2 -I include -lm -g3
-	valgrind ./test2
-	# ./test2
+	# valgrind ./test2
+	./test2
 	rm test2
 
 tests_run:
