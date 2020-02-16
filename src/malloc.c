@@ -16,15 +16,20 @@ void free(void *ptr)
     }
     // write(1, "nbfree=", 7);
     // my_put_nbr(nb_free);
-    // if (list && list->next && list->next->free) {
-    //     write(1, "next-free\n", 10);
-    // }
+    // //  && list->next && list->next->free) {
+    // write(1, "size not_free=", 14);
+    // my_put_nbr(get_number_not_freed_node(list));
+    // write(1, "size total=", 11);
+    // my_put_nbr(get_size_list(list));
+    // my_put_nbr(sbrk(0));
 }
 
 void *malloc(size_t size)
 {
     void *new_addr = NULL;
 
+    // write(1, "malloc", 6);
+    // my_put_nbr(sbrk(0));
     size = sizeof_mem_attr(size);
     if (list == NULL) {
         new_addr = init_list(&list, &next_addr, size);
