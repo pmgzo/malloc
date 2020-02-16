@@ -26,6 +26,11 @@ void free(void *ptr)
     else {
         free_from_the_middle(ptr, list, &nb_free);
     }
+    // write(1, "size list", 9);
+    // my_put_nbr(get_size_list(list));
+    // write(1, "not freed", 9);
+    // my_put_nbr(get_number_not_freed_node(list));
+    
 }
 
 void *malloc(size_t size)

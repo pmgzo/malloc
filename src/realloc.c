@@ -15,8 +15,8 @@ void *alloc_new_space(node_t *before_node_to_free, size_t size, long long diff)
     void *new_ptr = malloc(size);
 
     if (new_ptr) {
-        memcpy(new_ptr, before_node_to_free->next, diff);
-        free(before_node_to_free->next);
+        memcpy(new_ptr, (void *) before_node_to_free->next + NODE_SIZE, diff);
+        free((void *) before_node_to_free->next + NODE_SIZE);
     }
     return (new_ptr);
 }
@@ -52,12 +52,12 @@ void *realloc_the_ptr(void *ptr, size_t size, struct node_data data)
 
     if (before_node_to_free && before_node_to_free->next)
         diff = (void *) before_node_to_free - (void *) before_node_to_free->next - NODE_SIZE;
-    write(1, "diff=", 5);
-    my_put_nbr(diff);
-    if (diff > size) {
+    // write(1, "diff=", 5);
+    // my_put_nbr(diff);
+    if (diff - NODE_SIZE > size) {
         return split_for_realloc(before_node_to_free, data, size);
     }
-    if (diff != 0 && diff < size) {
+    else if (diff != 0) {
         return alloc_new_space(before_node_to_free, size, diff);
     }
     if ((void *) data.list + NODE_SIZE == ptr) {
