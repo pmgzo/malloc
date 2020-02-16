@@ -3,6 +3,7 @@
 
 #include "node.h"
 
+node_t *find_node_to_free(void *ptr, node_t *list);
 
 void move_next_addr(void *addr, void **next_addr);
 
