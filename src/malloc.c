@@ -7,7 +7,6 @@ void free(void *ptr)
     if (list == NULL || ptr == NULL)
         return;
     if ((void *) list + NODE_SIZE == ptr) {
-        write(1, "la\n", 3);
         free_from_the_head(&list, &next_addr, &nb_free);
         // write(1, "nbfree=", 7);
         // my_put_nbr(nb_free);
@@ -21,7 +20,7 @@ void free(void *ptr)
     // my_put_nbr(get_size_list(list));
     //  write(1, "size not_free=", 14);
     // my_put_nbr(get_number_not_freed_node(list));
- }
+}
 
 void *malloc(size_t size)
 {
