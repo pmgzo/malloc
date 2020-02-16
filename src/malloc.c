@@ -27,8 +27,9 @@ void *malloc(size_t size)
     void *new_addr = NULL;
 
     // write(1, "malloc\n", 7);
-    // my_put_nbr(sbrk(0));
     size = sizeof_mem_attr(size);
+    // my_put_nbr((void*)size);
+    // my_put_nbr(sbrk(0));
     if (list == NULL) {
         new_addr = init_list(&list, &next_addr, size);
     } 

@@ -20,6 +20,7 @@ SRC_SRC	=	sizeof_mem_attr.c\
 			free_from_the_middle.c\
 			add_new_node.c\
 			get_size_list.c\
+			calloc.c\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 

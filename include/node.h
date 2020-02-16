@@ -34,6 +34,8 @@ void *init_list(node_t **list, void **next_addr, size_t size);
 
 void *malloc(size_t size);
 
+void *calloc(size_t nmemb, size_t size);
+
 int move_pg_brk(void **next_addr);
 
 //
