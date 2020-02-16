@@ -17,6 +17,6 @@ void *init_list(node_t **list, void **next_addr, size_t size)
         return (NULL);
     }
     (*list) = create_node(last_pg_brk, NULL, 0);
-    (*next_addr) = (*list) + NODE_SIZE + size;
+    (*next_addr) = (void *) (*list) + NODE_SIZE + size;
     return (*list);
 }
