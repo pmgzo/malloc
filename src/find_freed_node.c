@@ -34,6 +34,7 @@ void *check_if_we_can_split(int *nb_free, node_t *before_freed_node, size_t size
     if (diff > 0) {
         split_node(before_freed_node, size);
         (*nb_free)++;
+        return (before_freed_node->next->next);
     }
     return (before_freed_node->next);
 }

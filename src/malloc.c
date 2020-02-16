@@ -7,6 +7,7 @@ void free(void *ptr)
     if (list == NULL || ptr == NULL)
         return;
     if ((void *) list + NODE_SIZE == ptr) {
+        write(1, "la\n", 3);
         free_from_the_head(&list, &next_addr, &nb_free);
         // write(1, "nbfree=", 7);
         // my_put_nbr(nb_free);
@@ -16,19 +17,17 @@ void free(void *ptr)
     }
     // write(1, "nbfree=", 7);
     // my_put_nbr(nb_free);
-    // //  && list->next && list->next->free) {
-    // write(1, "size not_free=", 14);
-    // my_put_nbr(get_number_not_freed_node(list));
     // write(1, "size total=", 11);
     // my_put_nbr(get_size_list(list));
-    // my_put_nbr(sbrk(0));
-}
+    //  write(1, "size not_free=", 14);
+    // my_put_nbr(get_number_not_freed_node(list));
+ }
 
 void *malloc(size_t size)
 {
     void *new_addr = NULL;
 
-    // write(1, "malloc", 6);
+    // write(1, "malloc\n", 7);
     // my_put_nbr(sbrk(0));
     size = sizeof_mem_attr(size);
     if (list == NULL) {
@@ -40,5 +39,11 @@ void *malloc(size_t size)
     else {
         new_addr = add_new_node(size, &list, &next_addr);
     }
+    // write(1, "nbfree=", 7);
+    // my_put_nbr(nb_free);
+    // write(1, "size not_free=", 14);
+    // my_put_nbr(get_number_not_freed_node(list));
+    // write(1, "size total=", 11);
+    // my_put_nbr(get_size_list(list));
     return (new_addr ? new_addr + NODE_SIZE : NULL);
 }
