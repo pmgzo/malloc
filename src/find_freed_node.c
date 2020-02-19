@@ -27,7 +27,7 @@ node_t *find_the_best_fit(node_t *list, size_t size)
 
 void *check_if_we_can_split(int *nb_free, node_t *before_freed_node, size_t size)
 {
-    long long diff = (void *) before_freed_node - (void *) before_freed_node->next - NODE_SIZE * 2;
+    long long diff = (void *) before_freed_node - (void *) before_freed_node->next - NODE_SIZE * 2 - size;
 
     before_freed_node->next->free = 0;
     (*nb_free)--;
