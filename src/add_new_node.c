@@ -6,11 +6,10 @@ void *add_new_node(size_t size, node_t **list, void **next_addr)
     node_t *new_node;
 
     if (diff < 0) {
-        if (enlarge_memory(diff * (-1) - NODE_SIZE) == -1) {
+        if (enlarge_memory(diff * (-1)) == -1) {
             return (NULL);
         }
     }
-
     new_node = create_node((*next_addr), (*list), 0);
     (*list) = new_node;
     (*next_addr) = (*next_addr) + NODE_SIZE + size;

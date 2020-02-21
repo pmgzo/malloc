@@ -40,7 +40,7 @@ int free_from_the_middle(void *ptr, node_t *list, int *nb_free)
     node_t *before_node_to_free = find_node_to_free(ptr, list);
     int nb_of_merged_node = 0;
 
-    if (before_node_to_free) {
+    if (before_node_to_free->next) {
         nb_of_merged_node = merge_freed_node(before_node_to_free, nb_free);
         (*nb_free) -= nb_of_merged_node;
         return (0);

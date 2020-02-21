@@ -15,7 +15,7 @@ void *init_list(node_t **list, void **next_addr, size_t size)
 {
     void *last_pg_brk = sbrk(0);
 
-    if (enlarge_memory(size) == -1) {
+    if (enlarge_memory(size + NODE_SIZE) == -1) {
         return (NULL);
     }
     (*list) = create_node(last_pg_brk, NULL, 0);

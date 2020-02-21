@@ -6,13 +6,14 @@ void *split_for_realloc(node_t *before_node_to_free, struct node_data data, size
 {
     (*data.nb_free)++;
     split_node(before_node_to_free, size);
-    write(1, "here\n", 5);
+    // write(1, "here\n", 5);
     return ((void *) before_node_to_free->next->next + NODE_SIZE);
 }
 
-void *alloc_new_space(node_t *before_node_to_free, size_t size, long long diff)
+void *alloc_new_space(node_t *before_node_to_free, size_t size)
 {
     void *new_ptr = malloc(size);
+    long long diff = (void *) before_node_to_free - (void *) before_node_to_free->next - NODE_SIZE;
 
     if (new_ptr) {
         memcpy(new_ptr, (void *) before_node_to_free->next + NODE_SIZE, diff);
@@ -23,12 +24,13 @@ void *alloc_new_space(node_t *before_node_to_free, size_t size, long long diff)
 
 void *enlarge_first_node(struct node_data data, size_t size)
 {
-    long long diff = sbrk(0) - (void *) data.list - size - NODE_SIZE;
+    long long diff = (sbrk(0) - (void *) data.list) - size;
 
     if (diff < 0) {
-        if (enlarge_memory(diff * (-1) - NODE_SIZE) == -1)
+        if (enlarge_memory(diff * (-1)) == -1)
             return (NULL);
     }
+    (*data.next_addr) = (void *) data.list + NODE_SIZE + size;
     return ((void *) data.list + NODE_SIZE);
 }
 
@@ -50,18 +52,17 @@ void *realloc_the_ptr(void *ptr, size_t size, struct node_data data)
     node_t *before_node_to_free = find_node_to_free(ptr, data.list);
     long long diff = 0;
 
-    if (before_node_to_free && before_node_to_free->next)
-        diff = (void *) before_node_to_free - (void *) before_node_to_free->next - NODE_SIZE;
-    if (diff - NODE_SIZE > size) {
-        return split_for_realloc(before_node_to_free, data, size);
-    }
-    else if (diff != 0) {
-        return alloc_new_space(before_node_to_free, size, diff);
-    }
+    size = sizeof_mem_attr(size);
     if ((void *) data.list + NODE_SIZE == ptr) {
         return realloc_first_node(size, data, ptr);
-    } 
-    else
+    }
+    else if (!before_node_to_free || !before_node_to_free->next)
         return (malloc(size));
+    diff = (void *) before_node_to_free - (void *) before_node_to_free->next - NODE_SIZE * 2 - size;
+    if (diff > 0) {
+        return split_for_realloc(before_node_to_free, data, size);
+    } else {
+        return alloc_new_space(before_node_to_free, size);
+    }
 }
 

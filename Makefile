@@ -53,7 +53,7 @@ test2:
 
 tests_run:
 		gcc -o unit_tests $(SRC) $(CRT) -I include/ -lm --coverage -lcriterion
-		valgrind ./unit_tests
+		./unit_tests
 		gcovr
 		rm -rf *.gcda *.gcno unit_tests
 
