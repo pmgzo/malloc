@@ -5,31 +5,38 @@
 ## Makefile cpp with Unit tests
 ##
 
-SRCDIR = src/
+SRCDIR =	src/
 
-SRC_SRC	=	sizeof_mem_attr.c\
-			is_pow_of_two.c\
-			my_put_nbr.c\
-			enlarge_memory.c\
-			init_list.c\
-			malloc.c\
-			shrink_memory.c\
-			free_from_the_head.c\
-			split.c\
-			find_freed_node.c\
-			free_from_the_middle.c\
-			add_new_node.c\
-			get_size_list.c\
-			calloc.c\
-			realloc.c\
-			realloc_array.c\
+SRC_SRC	=	add_new_node.c		\
+		calloc.c		\
+		enlarge_memory.c	\
+		find_freed_node.c	\
+		free_from_the_head.c	\
+		free_from_the_middle.c	\
+		get_size_list.c		\
+		init_list.c		\
+		is_pow_of_two.c		\
+		main.c			\
+		malloc.c		\
+		my_put_nbr.c		\
+		realloc_array.c		\
+		realloc.c		\
+		shrink_memory.c		\
+		sizeof_mem_attr.c	\
+		split.c			\
 
 SRC =	$(addprefix $(SRCDIR), $(SRC_SRC))
 
 CRITDIR = tests/
 
-CRT_SRC	=	redirect.c\
+CRT_SRC		=	redirect.c\
 			sizeof_mem_attr.test.c\
+
+OBJ		=	$(SRC:.c=.o)
+
+CPPFLAGS	+=	-I include
+
+CFLAGS		+=	-fPIC	-Wall
 
 CRT = $(addprefix $(CRITDIR), $(CRT_SRC))
 
@@ -37,19 +44,13 @@ NAME	=	libmy_malloc.so
 
 all:	$(NAME)
 
-$(NAME):
-		gcc -Wall -fPIC -c $(SRC) -I include/
-		gcc -shared -Wl,-soname,$(NAME) -o $(NAME) *.o
+$(NAME):	$(OBJ)
+	gcc -shared -Wl,-soname,$(NAME) -o $(NAME) $(OBJ)
 
 test:
 	gcc src/main.c -o test -lm -g3
 	LD_PRELOAD=./libmy_malloc.so ./test
-
-test2:
-	gcc src/main.c $(SRC) -o test2 -I include -lm -g3
-	# valgrind ./test2
-	./test2
-	rm test2
+	#if want to compile you need to use LD_LIBRARY_PATH
 
 tests_run:
 		gcc -o unit_tests $(SRC) $(CRT) -I include/ -lm --coverage -lcriterion
@@ -58,7 +59,7 @@ tests_run:
 		rm -rf *.gcda *.gcno unit_tests
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ)
 	rm -rf *.gcda *.gcno
 
 fclean:	clean
