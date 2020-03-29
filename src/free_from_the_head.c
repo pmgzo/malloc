@@ -10,6 +10,7 @@ int free_from_the_head(node_t **list, void **next_addr, int *nb_free)
     node_t *head = (*list);
     int nb_of_merged_node = 0;
 
+    // write(1, "free from the head\n", 20);
     head->free = 1;
     move_next_addr(head, next_addr);
     head = head->next;
@@ -21,9 +22,9 @@ int free_from_the_head(node_t **list, void **next_addr, int *nb_free)
     if (nb_of_merged_node != 0)
         (*nb_free)++;
     (*nb_free) -= nb_of_merged_node;
-    if (sbrk(0) - (*next_addr) >= PAGE_SIZE) {
-        move_pg_brk(next_addr);
-    }
+    // if (sbrk(0) - (*next_addr) >= PAGE_SIZE) {
+    //     move_pg_brk(next_addr);
+    // }
     (*list) = head;
     if ((*list) == NULL) {
         (*nb_free) = 0;

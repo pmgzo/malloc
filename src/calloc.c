@@ -3,7 +3,7 @@
 
 void *calloc(size_t nmemb, size_t size)
 {
-    lu_t total_bytes;
+    size_t total_bytes;
     void *new_addr;
 
     write(1, "calloc\n", 7);

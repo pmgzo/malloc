@@ -1,7 +1,7 @@
 #include "node.h"
 #include <math.h>
 
-lu_t sizeof_mem_attr(lu_t size)
+size_t sizeof_mem_attr(size_t size)
 {
     size--;
     size |= size >> 1;

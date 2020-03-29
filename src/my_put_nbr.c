@@ -8,10 +8,10 @@
 #include "node.h"
 
 
-lu_t divisor(lu_t nb)
+size_t divisor(size_t nb)
 {
-    lu_t i = 1;
-    lu_t r = 10;
+    size_t i = 1;
+    size_t r = 10;
 
     if (nb < 0) {
         nb = nb * (-1);
@@ -26,9 +26,9 @@ lu_t divisor(lu_t nb)
 
 int my_put_nbr(void *ptr)
 {
-    lu_t nb = (lu_t) ptr;
-    lu_t i = divisor(nb);
-    lu_t r = 1;
+    size_t nb = (size_t) ptr;
+    size_t i = divisor(nb);
+    size_t r = 1;
     char c;
 
     if (nb < 0){
