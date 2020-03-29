@@ -1,6 +1,5 @@
 #include "node.h"
 
-
 void change_ptr(struct node_to_cmp *ptr, node_t *before_freed_node, size_t size_btw_ptr)
 {
     if (ptr->addr == NULL || size_btw_ptr < ptr->size) {
@@ -31,7 +30,7 @@ void *check_if_we_can_split(int *nb_free, node_t *before_freed_node, size_t size
 
     before_freed_node->next->free = 0;
     (*nb_free)--;
-    if (diff > 0) {
+    if (diff > 0 && is_pow_of_two(diff)) {
         split_node(before_freed_node, size);
         (*nb_free)++;
         return (before_freed_node->next->next);
