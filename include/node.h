@@ -12,8 +12,7 @@
 #include "compute.h"
 
 struct node {
-    // void *addr;
-    unsigned free:1; //true or false
+    unsigned free:1;
     struct node *next;
 };
 
@@ -22,7 +21,7 @@ typedef struct node node_t;
 
 struct node_to_cmp {
     size_t size;
-    node_t *addr; //node addr1
+    node_t *addr;
 };
 
 struct node_data {

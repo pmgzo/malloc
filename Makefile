@@ -50,15 +50,19 @@ $(NAME):	$(OBJ)
 
 test:
 	gcc src/main.c $(SRC) $(SRC2) -o test  -lm -g3 -I include
-	# ./test
-	# rm -f test
-	#if want to compile you need to use LD_LIBRARY_PATH
-
+	
 tests_run:
 		gcc -o unit_tests $(SRC2) $(CRT) -I include/ -lm --coverage -lcriterion
 		./unit_tests
 		gcovr
 		rm -rf *.gcda *.gcno unit_tests
+
+tests_run2:
+		gcc -o unit_tests $(SRC2) $(SRC) $(CRT) -I include/ -lm --coverage -lcriterion
+		./unit_tests
+		gcovr
+		rm -rf *.gcda *.gcno unit_tests
+
 
 clean:
 	rm -rf $(OBJ)

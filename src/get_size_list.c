@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** project
+** File description:
+** function
+*/
+
 #include "node.h"
 
 int get_size_list(node_t *list)

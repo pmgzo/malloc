@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** project
+** File description:
+** function
+*/
+
 #include "node.h"
 #include <string.h>
 
@@ -6,8 +13,6 @@ void *calloc(size_t nmemb, size_t size)
     size_t total_bytes;
     void *new_addr;
 
-    write(1, "calloc\n", 7);
-    
     if (!nmemb || !size)
         return (NULL);
     nmemb = sizeof_mem_attr(nmemb);

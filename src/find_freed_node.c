@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** project
+** File description:
+** function
+*/
+
 #include "node.h"
 
 void change_ptr(struct node_to_cmp *ptr, node_t *before_freed_node, size_t size_btw_ptr)
@@ -43,7 +50,6 @@ void *find_freed_node(size_t size, node_t **list, void **next_addr, int *nb_free
     node_t *before_freed_node = find_the_best_fit((*list), size);
 
     if (before_freed_node) {
-        //return directly or split and return
         return (check_if_we_can_split(nb_free, before_freed_node, size));
     }
     else  {

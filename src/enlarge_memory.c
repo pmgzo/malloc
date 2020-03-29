@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** project
+** File description:
+** function
+*/
+
 #include "node.h"
 
 int enlarge_memory(size_t size)
